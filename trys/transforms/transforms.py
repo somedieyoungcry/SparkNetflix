@@ -23,12 +23,14 @@ class Transformation:
             .groupBy("year_added") \
             .agg(f.count("*").alias("total_peliculas_por_año")) \
             .orderBy("year_added")
+
         return movies_year
 
     @staticmethod
     def top10_duration(df: DataFrame, top=True) -> DataFrame:
         window_func = Window.orderBy(df["duration"].desc() if top else df["duration"].asc())
         top10 = df.withColumn("row_number", f.row_number().over(window_func))
+
         return top10.where(top10["row_number"] <= 10)
 
     @staticmethod
@@ -36,6 +38,7 @@ class Transformation:
         window_spec = Window.orderBy(f.desc("rating"))
         top_100_mayor_rating = df.filter(f.col("rating").isNotNull()) \
             .withColumn("row_number", f.row_number().over(window_spec))
+
         return top_100_mayor_rating.filter(top_100_mayor_rating["row_number"] <= 100)
 
     @staticmethod
