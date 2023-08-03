@@ -36,8 +36,6 @@ class Transformation:
         window_spec = Window.orderBy(f.desc("rating"))
         top_100_mayor_rating = df.filter(f.col("rating").isNotNull()) \
             .withColumn("row_number", f.row_number().over(window_spec))
-
-        # Filtramos el DataFrame para quedarnos con las 100 primeras filas que representan el top 100
         return top_100_mayor_rating.filter(top_100_mayor_rating["row_number"] <= 100)
 
     @staticmethod
@@ -47,15 +45,14 @@ class Transformation:
         movies_count = movies_no_null.withColumn("num_peliculas", f.count("*").over(window_spec))
         movies_range = movies_count\
             .withColumn("rango", f.rank().over(Window.orderBy(f.col("num_peliculas").desc())))
+
         return movies_range.filter(f.col("rango") == 1).drop("rango")
 
     @staticmethod
     def high_low(df: DataFrame) -> DataFrame:
         df_count = df.groupBy("listed_in").agg(f.count("*").alias("num_registros"))
-
         windows_high = Window.orderBy(f.col("num_registros").desc())
         windows_low = Window.orderBy(f.col("num_registros").asc())
-
         df_ranks = df_count.withColumn("top_high", f.rank().over(windows_high))\
             .withColumn("top_low", f.rank().over(windows_low))
 
@@ -64,8 +61,6 @@ class Transformation:
     @staticmethod
     def union_df(df1: DataFrame, df2: DataFrame) -> DataFrame:
         joined_df = df1.join(df2, on="show_id", how="inner")
-
-        # Filtrar eliminando las series y películas que no tienen director
         final_df = joined_df.filter(joined_df["director"].isNotNull())
 
         return final_df

@@ -47,6 +47,7 @@ def main():
     print("Inciso 7")
     add_column = t.add_date_diff(join_2_df)
     add_column.show()
+    add_column.printSchema()
 
 
 if __name__ == "__main__":
