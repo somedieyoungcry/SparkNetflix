@@ -1,0 +1,75 @@
+{
+  "namespace": "kdit",
+  "name": "t_kdit_netflix_info",
+  "doc": "Tabla que contiene informacion de nesflis.",
+  "database": "master",
+  "storageZone": "MASTERDATA",
+  "storageType": "HDFS-Parquet",
+  "physicalPath": "/data/master/kdit/data/t_kdit_netflix_info",
+  "partitions": ["show_id"],
+  "securityLevel": "L1",
+  "type": "record",
+  "fields": [{
+    "name": "show_id",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(10)",
+    "deleted": false,
+    "metadata": false,
+    "default": ""
+  },
+ {
+    "name": "type",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(10)",
+    "deleted": false,
+    "metadata": false,
+    "default": ""
+  },
+ {
+    "name": "title",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(100)",
+    "deleted": false,
+    "metadata": false,
+    "default": ""
+  },
+ {
+    "name": "country",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(100)",
+    "deleted": false,
+    "metadata": false,
+    "default": ""
+  },
+ {
+    "name": "date_added",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(100)",
+    "deleted": false,
+    "metadata": false,
+    "default": ""
+  },
+  {
+    "name": "release_year",
+    "type": ["int32","null"],
+    "logicalFormat": "INT32",
+    "deleted": false,
+    "metadata": false,
+    "default": 0
+  },   {
+    "name": "rating",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(50)",
+    "deleted": false,
+    "metadata": false,
+    "default": "N/A"
+  },
+  {
+    "name": "duration",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(50)",
+    "deleted": false,
+    "metadata": false,
+    "default": "N/A"
+  }]
+}

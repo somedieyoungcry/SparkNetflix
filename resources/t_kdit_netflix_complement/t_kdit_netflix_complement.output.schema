@@ -1,0 +1,48 @@
+{
+  "namespace": "kdit",
+  "name": "t_kdit_netflix_complement",
+  "doc": "Tabla que contiene informacion de nesflis.",
+  "database": "master",
+  "storageZone": "MASTERDATA",
+  "storageType": "HDFS-Parquet",
+  "physicalPath": "/data/master/kdit/data/t_kdit_netflix_complement",
+  "partitions": ["show_id"],
+  "securityLevel": "L1",
+  "type": "record",
+  "fields": [{
+    "name": "show_id",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(10)",
+    "deleted": false,
+    "metadata": false,
+    "default": ""
+  }, {
+    "name": "director",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(50)",
+    "deleted": false,
+    "metadata": false,
+    "default": ""
+  }, {
+    "name": "cast",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(300)",
+    "deleted": false,
+    "metadata": false,
+    "default": ""
+  }, {
+    "name": "listed_in",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(50)",
+    "deleted": false,
+    "metadata": false,
+    "default": "N/A"
+  }, {
+    "name": "description",
+    "type": ["string", "null"],
+    "logicalFormat": "ALPHANUMERIC(300)",
+    "deleted": false,
+    "metadata": false,
+    "default": "0"
+  }]
+}
