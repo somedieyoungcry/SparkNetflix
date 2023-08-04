@@ -9,6 +9,7 @@ import pyspark.sql.functions as f
 
 t = Transformation()
 
+
 class TestsTransformations(TestCase):
 
     def setUp(self):
@@ -37,7 +38,6 @@ class TestsTransformations(TestCase):
         self.spark.stop()
 
     def test_top10_rating_success(self):
-        # Ejecuta la función
         result_df = Transformation.top10_rating(self.input_df)
 
         self.assertEqual(result_df.count(), 10)
@@ -63,6 +63,6 @@ class TestsTransformations(TestCase):
 
         self.assertTrue("Column 'rating' not found" in str(context.exception))
 
+
 if __name__ == '__main__':
     unittest.main()
-

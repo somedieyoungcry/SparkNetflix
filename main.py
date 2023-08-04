@@ -10,6 +10,7 @@ def main():
         .getOrCreate()
     complements_df = spark.read.parquet("resources/t_kdit_netflix_complement/t_kdit_netflix_complement.parquet")
     info_df = spark.read.parquet("resources/t_kdit_netflix_info/t_kdit_netflix_info.parquet")
+
     info_df.printSchema()
     complements_df.printSchema()
     t = Transformation()
@@ -40,14 +41,14 @@ def main():
     high_low_rank = t.high_low(complements_df)
     high_low_rank.show()
 
-    print("Join 1.4 y 1.5")
+    print("Join Funcion 4 y 5")
     join_2_df = t.union_df(top10_rating, top_director)
     join_2_df.show()
 
     print("Inciso 7")
     add_column = t.add_date_diff(join_2_df)
     add_column.show()
-    add_column.printSchema()
+    # add_column.printSchema()
 
 
 if __name__ == "__main__":
